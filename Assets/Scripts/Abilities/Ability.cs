@@ -8,6 +8,8 @@ public class Ability : MonoBehaviour
     protected string abilityName;
     protected float baseDamage;
     protected float castDuration; // How long the ability lasts
+    protected float buffDuration; // If the ability is a buff, how long the buff lasts
+    protected bool hasDebuffed = false;
 
     protected float maxCooldown; // Time it takes to be able to cast the ability again
     public float MaxCooldown
@@ -45,6 +47,7 @@ public class Ability : MonoBehaviour
     {
         UpdateCooldown();
         UpdateCastDuration();
+        UpdateBuffDuration();
     }
 
     private void UpdateCooldown()
@@ -61,9 +64,19 @@ public class Ability : MonoBehaviour
     {
         castDuration -= Time.deltaTime;
 
-        if (castDuration <= 0)
+        if (castDuration <= 0 && isActive)
         {
             DisableAbility();
+        }
+    }
+
+    private void UpdateBuffDuration()
+    {
+        buffDuration -= Time.deltaTime;
+
+        if (buffDuration <= 0 && !hasDebuffed)
+        {
+            Debuff();
         }
     }
 
@@ -72,5 +85,10 @@ public class Ability : MonoBehaviour
         caster.TryGetComponent<PlayerCombat>(out PlayerCombat playerCombat);
         playerCombat.IsCasting = false;
         isActive = false;
+    }
+
+    protected virtual void Debuff()
+    {
+        hasDebuffed = true;
     }
 }

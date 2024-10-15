@@ -10,11 +10,12 @@ public class PlayerCombat : MonoBehaviour
 {
     private InputManager inputManager;
     private InputAction castAbility1;
+    private InputAction castAbility2;
 
     private PlayerController playerControllerScript;
 
-    [SerializeField] private Ability[] abilities = new Ability[2];
-    [NonSerialized] public Ability[] spawnedAbilities = new Ability[2]; // The array length should match the abilities array's length
+    [SerializeField] private Ability[] abilities = new Ability[3];
+    [NonSerialized] public Ability[] spawnedAbilities = new Ability[3]; // The array length should match the abilities array's length
 
     private bool isCasting = false;
     public bool IsCasting
@@ -37,12 +38,19 @@ public class PlayerCombat : MonoBehaviour
         castAbility1 = inputManager.Player.CastAbility1;
         castAbility1.Enable();
         castAbility1.performed += CastAbility1Performed;
+
+        castAbility2 = inputManager.Player.CastAbility2;
+        castAbility2.Enable();
+        castAbility2.performed += CastAbility2Performed;
     }
 
     private void OnDisable()
     {
         castAbility1.Disable();
         castAbility1.performed -= CastAbility1Performed;
+
+        castAbility2.Disable();
+        castAbility2.performed -= CastAbility2Performed;
     }
 
     public void PrimaryAttack(GameObject intendedTarget)
@@ -53,6 +61,11 @@ public class PlayerCombat : MonoBehaviour
     private void CastAbility1Performed(InputAction.CallbackContext context)
     {
         CastAbility(1, gameObject, true);
+    }
+
+    private void CastAbility2Performed(InputAction.CallbackContext context)
+    {
+        CastAbility(2, gameObject, true);
     }
 
     private void CastAbility(int abilitySlotIndex, GameObject intendedTarget, bool stopMovement)

@@ -44,6 +44,15 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CastAbility2"",
+                    ""type"": ""Button"",
+                    ""id"": ""c09031db-2f9a-4a85-989d-335891642aa2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -66,6 +75,17 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
                     ""action"": ""CastAbility1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""69d5ceba-361b-40ab-a738-a0e24a8ac346"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""CastAbility2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -95,6 +115,7 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_SetDestination = m_Player.FindAction("SetDestination", throwIfNotFound: true);
         m_Player_CastAbility1 = m_Player.FindAction("CastAbility1", throwIfNotFound: true);
+        m_Player_CastAbility2 = m_Player.FindAction("CastAbility2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -158,12 +179,14 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_SetDestination;
     private readonly InputAction m_Player_CastAbility1;
+    private readonly InputAction m_Player_CastAbility2;
     public struct PlayerActions
     {
         private @InputManager m_Wrapper;
         public PlayerActions(@InputManager wrapper) { m_Wrapper = wrapper; }
         public InputAction @SetDestination => m_Wrapper.m_Player_SetDestination;
         public InputAction @CastAbility1 => m_Wrapper.m_Player_CastAbility1;
+        public InputAction @CastAbility2 => m_Wrapper.m_Player_CastAbility2;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -179,6 +202,9 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
             @CastAbility1.started += instance.OnCastAbility1;
             @CastAbility1.performed += instance.OnCastAbility1;
             @CastAbility1.canceled += instance.OnCastAbility1;
+            @CastAbility2.started += instance.OnCastAbility2;
+            @CastAbility2.performed += instance.OnCastAbility2;
+            @CastAbility2.canceled += instance.OnCastAbility2;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -189,6 +215,9 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
             @CastAbility1.started -= instance.OnCastAbility1;
             @CastAbility1.performed -= instance.OnCastAbility1;
             @CastAbility1.canceled -= instance.OnCastAbility1;
+            @CastAbility2.started -= instance.OnCastAbility2;
+            @CastAbility2.performed -= instance.OnCastAbility2;
+            @CastAbility2.canceled -= instance.OnCastAbility2;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -219,5 +248,6 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
     {
         void OnSetDestination(InputAction.CallbackContext context);
         void OnCastAbility1(InputAction.CallbackContext context);
+        void OnCastAbility2(InputAction.CallbackContext context);
     }
 }

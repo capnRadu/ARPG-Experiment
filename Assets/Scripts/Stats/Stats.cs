@@ -6,6 +6,12 @@ using UnityEngine.AI;
 public class Stats : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
+    public float MaxHealth
+    {
+        get { return maxHealth; }
+        set { maxHealth = value; }
+    }
+
     private float currentHealth;
     public float CurrentHealth
     {
@@ -14,6 +20,12 @@ public class Stats : MonoBehaviour
     }
 
     [SerializeField] private float maxMana;
+    public float MaxMana
+    {
+        get { return maxMana; }
+        set { maxMana = value; }
+    }
+
     private float currentMana;
     public float CurrentMana
     {
