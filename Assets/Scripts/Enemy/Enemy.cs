@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +6,13 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    [SerializeField] private GameObject player;
+    [NonSerialized] public GameObject player;
     private NavMeshAgent navMeshAgent;
     private Animator animator;
     private Stats statsScript;
     private Stats playerStats;
 
-    private float moveSpeed = 3f;
+    private float moveSpeed = 1.5f;
     private float attackDamage = 5f;
     private const float ATTACK_RANGE = 2f;
 
@@ -102,6 +103,6 @@ public class Enemy : MonoBehaviour, IDamageable
         hasAttacked = false;
 
         attackDelay = attackAnimation.length;
-        attackDelay += Random.Range(0f, 2f);
+        attackDelay += UnityEngine.Random.Range(0f, 2f);
     }
 }
