@@ -1472,6 +1472,7 @@ GameObject:
   - component: {fileID: 1269085763}
   - component: {fileID: 1269085765}
   - component: {fileID: 1269085764}
+  - component: {fileID: 1269085766}
   m_Layer: 5
   m_Name: Health Globe
   m_TagString: Untagged
@@ -1537,6 +1538,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1269085762}
   m_CullTransparentMesh: 1
+--- !u!114 &1269085766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269085762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a3d195e533e3df4bb62131206974b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 7485373573730170813}
+  resourceType: health
+  fillImage: {fileID: 1103536234}
 --- !u!1 &1305718184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1548,6 +1564,7 @@ GameObject:
   - component: {fileID: 1305718185}
   - component: {fileID: 1305718187}
   - component: {fileID: 1305718186}
+  - component: {fileID: 1305718188}
   m_Layer: 5
   m_Name: Mana Globe
   m_TagString: Untagged
@@ -1613,6 +1630,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305718184}
   m_CullTransparentMesh: 1
+--- !u!114 &1305718188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305718184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a3d195e533e3df4bb62131206974b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 7485373573730170813}
+  resourceType: mana
+  fillImage: {fileID: 2128325376}
 --- !u!1 &1313368073
 GameObject:
   m_ObjectHideFlags: 0

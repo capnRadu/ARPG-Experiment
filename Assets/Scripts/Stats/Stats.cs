@@ -102,4 +102,8 @@ public class Stats : MonoBehaviour
     {
         return currentHealth / maxHealth;
     }
+    public float GetManaPercentage()
+    {
+        return currentMana / maxMana;
+    }
 }

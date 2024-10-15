@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GetComponent<Stats>().TakeDamage(1000);
+            GetComponent<Stats>().TakeDamage(10);
         }
     }
 
