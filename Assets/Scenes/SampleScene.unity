@@ -6480,6 +6480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities:
   - {fileID: 5581741674811889519, guid: 16cbd234b9b3b64449487f521411722f, type: 3}
+  - {fileID: 49816414001669933, guid: c4e6c1b3e6a3a9e488cc294166204036, type: 3}
 --- !u!114 &7485373573739643925
 MonoBehaviour:
   m_ObjectHideFlags: 0

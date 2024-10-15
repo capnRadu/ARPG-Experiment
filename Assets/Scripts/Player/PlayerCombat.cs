@@ -2,12 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
-    [SerializeField] private Ability[] abilities = new Ability[1];
-    [NonSerialized] public Ability[] spawnedAbilities = new Ability[1]; // The array length should match the abilities array's length
+    private InputManager inputManager;
+    private InputAction castAbility1;
+
+    private PlayerController playerControllerScript;
+
+    [SerializeField] private Ability[] abilities = new Ability[2];
+    [NonSerialized] public Ability[] spawnedAbilities = new Ability[2]; // The array length should match the abilities array's length
 
     private bool isCasting = false;
     public bool IsCasting
@@ -20,27 +27,50 @@ public class PlayerCombat : MonoBehaviour
 
     private void Awake()
     {
+        inputManager = new InputManager();
+        playerControllerScript = GetComponent<PlayerController>();
         animator = GetComponent<Animator>();
+    }
+
+    private void OnEnable()
+    {
+        castAbility1 = inputManager.Player.CastAbility1;
+        castAbility1.Enable();
+        castAbility1.performed += CastAbility1Performed;
+    }
+
+    private void OnDisable()
+    {
+        castAbility1.Disable();
+        castAbility1.performed -= CastAbility1Performed;
     }
 
     public void PrimaryAttack(GameObject intendedTarget)
     {
-        CastAbility(0, intendedTarget);
+        CastAbility(0, intendedTarget, false);
     }
 
-    private void CastAbility(int abilitySlotIndex, GameObject intendedTarget)
+    private void CastAbility1Performed(InputAction.CallbackContext context)
+    {
+        CastAbility(1, gameObject, true);
+    }
+
+    private void CastAbility(int abilitySlotIndex, GameObject intendedTarget, bool stopMovement)
     {
         if (intendedTarget != null)
         {
-            if (spawnedAbilities[abilitySlotIndex] == null)
+            if (spawnedAbilities[abilitySlotIndex] == null && !isCasting)
             {
+                if (stopMovement)
+                {
+                    playerControllerScript.StopRunningCoroutine(0, true);
+                }
+
                 isCasting = true;
 
                 spawnedAbilities[abilitySlotIndex] = Instantiate(abilities[abilitySlotIndex], intendedTarget.transform.position, Quaternion.identity);
                 spawnedAbilities[abilitySlotIndex].Caster = gameObject;
                 spawnedAbilities[abilitySlotIndex].IntendedTarget = intendedTarget;
-
-                animator.SetTrigger("attack");
             }
         }
     }

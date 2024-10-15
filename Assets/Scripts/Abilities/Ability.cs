@@ -7,7 +7,7 @@ public class Ability : MonoBehaviour
 {
     protected string abilityName;
     protected float baseDamage;
-    protected float castDuration; // Total time it takes to cast the ability from start to impact/effect
+    protected float castDuration; // How long the ability lasts
 
     protected float maxCooldown; // Time it takes to be able to cast the ability again
     public float MaxCooldown
@@ -25,6 +25,7 @@ public class Ability : MonoBehaviour
     [SerializeField] protected AnimationClip animationClip;
     public Sprite abilityIcon;
 
+    protected bool isActive = true;
 
     protected GameObject caster;
     public GameObject Caster
@@ -38,11 +39,6 @@ public class Ability : MonoBehaviour
     {
         get { return intendedTarget; }
         set { intendedTarget = value; }
-    }
-
-    protected virtual void Awake()
-    {
-        castDuration = animationClip.length;
     }
 
     protected virtual void Update()
@@ -67,8 +63,14 @@ public class Ability : MonoBehaviour
 
         if (castDuration <= 0)
         {
-            caster.TryGetComponent<PlayerCombat>(out PlayerCombat playerCombat);
-            playerCombat.IsCasting = false;
+            DisableAbility();
         }
+    }
+
+    protected virtual void DisableAbility()
+    {
+        caster.TryGetComponent<PlayerCombat>(out PlayerCombat playerCombat);
+        playerCombat.IsCasting = false;
+        isActive = false;
     }
 }

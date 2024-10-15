@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void StopRunningCoroutine(int index, bool stopMoving)
+    public void StopRunningCoroutine(int index, bool stopMoving)
     {
         if (coroutines[index] != null)
         {

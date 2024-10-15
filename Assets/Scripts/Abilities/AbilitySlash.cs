@@ -6,19 +6,22 @@ public class AbilitySlash : Ability
 {
     private float impactDelay = 0.35f;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-
         abilityName = "Slash";
         baseDamage = 10f;
+        castDuration = animationClip.length;
         maxCooldown = castDuration;
         cooldown = maxCooldown;
+    }
+    private void Start()
+    {
+        caster.GetComponent<Animator>().SetTrigger("attack");
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == intendedTarget)
+        if (collision.gameObject == intendedTarget && isActive)
         {
             collision.gameObject.TryGetComponent<Stats>(out Stats targetStats);
             caster.TryGetComponent<Stats>(out Stats casterStats);
