@@ -31,6 +31,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ConsumePotion1",
+                    "type": "Button",
+                    "id": "0aca8bdc-5e5a-4e88-89dc-e611f987f9e0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ConsumePotion2",
+                    "type": "Button",
+                    "id": "b8ef8526-4cd7-423d-bc14-ecb13d067527",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -64,6 +82,28 @@
                     "processors": "",
                     "groups": "Keyboard & Mouse",
                     "action": "CastAbility2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c7ad8c72-01e3-4d4b-a02c-8c85be426b79",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "ConsumePotion1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9fed7c3f-d9a2-4e26-82bd-e57b78934689",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "ConsumePotion2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

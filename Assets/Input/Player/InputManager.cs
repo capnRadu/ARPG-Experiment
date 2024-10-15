@@ -53,6 +53,24 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ConsumePotion1"",
+                    ""type"": ""Button"",
+                    ""id"": ""0aca8bdc-5e5a-4e88-89dc-e611f987f9e0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ConsumePotion2"",
+                    ""type"": ""Button"",
+                    ""id"": ""b8ef8526-4cd7-423d-bc14-ecb13d067527"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -88,6 +106,28 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
                     ""action"": ""CastAbility2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c7ad8c72-01e3-4d4b-a02c-8c85be426b79"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""ConsumePotion1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9fed7c3f-d9a2-4e26-82bd-e57b78934689"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""ConsumePotion2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -116,6 +156,8 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
         m_Player_SetDestination = m_Player.FindAction("SetDestination", throwIfNotFound: true);
         m_Player_CastAbility1 = m_Player.FindAction("CastAbility1", throwIfNotFound: true);
         m_Player_CastAbility2 = m_Player.FindAction("CastAbility2", throwIfNotFound: true);
+        m_Player_ConsumePotion1 = m_Player.FindAction("ConsumePotion1", throwIfNotFound: true);
+        m_Player_ConsumePotion2 = m_Player.FindAction("ConsumePotion2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -180,6 +222,8 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SetDestination;
     private readonly InputAction m_Player_CastAbility1;
     private readonly InputAction m_Player_CastAbility2;
+    private readonly InputAction m_Player_ConsumePotion1;
+    private readonly InputAction m_Player_ConsumePotion2;
     public struct PlayerActions
     {
         private @InputManager m_Wrapper;
@@ -187,6 +231,8 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
         public InputAction @SetDestination => m_Wrapper.m_Player_SetDestination;
         public InputAction @CastAbility1 => m_Wrapper.m_Player_CastAbility1;
         public InputAction @CastAbility2 => m_Wrapper.m_Player_CastAbility2;
+        public InputAction @ConsumePotion1 => m_Wrapper.m_Player_ConsumePotion1;
+        public InputAction @ConsumePotion2 => m_Wrapper.m_Player_ConsumePotion2;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -205,6 +251,12 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
             @CastAbility2.started += instance.OnCastAbility2;
             @CastAbility2.performed += instance.OnCastAbility2;
             @CastAbility2.canceled += instance.OnCastAbility2;
+            @ConsumePotion1.started += instance.OnConsumePotion1;
+            @ConsumePotion1.performed += instance.OnConsumePotion1;
+            @ConsumePotion1.canceled += instance.OnConsumePotion1;
+            @ConsumePotion2.started += instance.OnConsumePotion2;
+            @ConsumePotion2.performed += instance.OnConsumePotion2;
+            @ConsumePotion2.canceled += instance.OnConsumePotion2;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -218,6 +270,12 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
             @CastAbility2.started -= instance.OnCastAbility2;
             @CastAbility2.performed -= instance.OnCastAbility2;
             @CastAbility2.canceled -= instance.OnCastAbility2;
+            @ConsumePotion1.started -= instance.OnConsumePotion1;
+            @ConsumePotion1.performed -= instance.OnConsumePotion1;
+            @ConsumePotion1.canceled -= instance.OnConsumePotion1;
+            @ConsumePotion2.started -= instance.OnConsumePotion2;
+            @ConsumePotion2.performed -= instance.OnConsumePotion2;
+            @ConsumePotion2.canceled -= instance.OnConsumePotion2;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -249,5 +307,7 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
         void OnSetDestination(InputAction.CallbackContext context);
         void OnCastAbility1(InputAction.CallbackContext context);
         void OnCastAbility2(InputAction.CallbackContext context);
+        void OnConsumePotion1(InputAction.CallbackContext context);
+        void OnConsumePotion2(InputAction.CallbackContext context);
     }
 }

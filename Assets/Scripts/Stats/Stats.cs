@@ -118,4 +118,16 @@ public class Stats : MonoBehaviour
     {
         return currentMana / maxMana;
     }
+
+    public void RefillHealth(float amount)
+    {
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+    }
+
+    public void RefillMana(float amount)
+    {
+        currentMana += amount;
+        currentMana = Mathf.Clamp(currentMana, 0, maxMana);
+    }
 }
