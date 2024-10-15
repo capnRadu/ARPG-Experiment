@@ -45,6 +45,11 @@ public class Stats : MonoBehaviour
     private Animator animator;
     [SerializeField] private AnimationClip deathAnimation;
     private float deathAnimationLength;
+    private bool isDead = false;
+    public bool IsDead
+    {
+        get { return isDead; }
+    }
 
     private void Awake()
     {
@@ -107,7 +112,9 @@ public class Stats : MonoBehaviour
         if (animator.GetBool("isWalking"))
         {
             animator.SetBool("isWalking", false);
-        }   
+        }
+
+        isDead = true;
     }
 
     public float GetHealthPercentage()

@@ -4863,6 +4863,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98549c527b60c304f8471e6e0a0af342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 7485373573730170813}
+  attackAnimation: {fileID: 7400000, guid: a3fe64eed98977b4cb034950628ba657, type: 2}
 --- !u!4 &1826807711275550153
 Transform:
   m_ObjectHideFlags: 0
