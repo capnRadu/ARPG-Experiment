@@ -45,6 +45,14 @@ public class PlayerController : MonoBehaviour
         setDestination.canceled -= SetDestinationCanceled;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GetComponent<Stats>().TakeDamage(1000);
+        }
+    }
+
     // Button is first pressed, but not yet released
     private void SetDestinationPerformed(InputAction.CallbackContext context)
     {

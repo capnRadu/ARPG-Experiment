@@ -10,5 +10,10 @@ public class HealthBar : MonoBehaviour
     {
         barContainer.transform.localScale = new Vector3(GetComponentInParent<Stats>().GetHealthPercentage(), 1, 1);
         transform.LookAt(Camera.main.transform);
+
+        if (GetComponentInParent<Stats>().CurrentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

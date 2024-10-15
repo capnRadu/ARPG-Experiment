@@ -4582,11 +4582,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ca12035cedb85418ba0112c72a322c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 50
   maxMana: 50
   strength: 1
   floatingTextPrefab: {fileID: 1409012684021391731, guid: d16079f7c12772649abb84ada9fa99ce,
     type: 3}
+  deathAnimation: {fileID: 7400000, guid: 70fad3c6f5b3b674a977044896392db7, type: 2}
 --- !u!4 &1826807711275550155
 Transform:
   m_ObjectHideFlags: 0
@@ -6464,6 +6465,7 @@ MonoBehaviour:
   strength: 2
   floatingTextPrefab: {fileID: 1409012684021391731, guid: d16079f7c12772649abb84ada9fa99ce,
     type: 3}
+  deathAnimation: {fileID: 7400000, guid: fd87d16de629c7b46a8545c27d9f8b40, type: 2}
 --- !u!54 &7485373573739643926
 Rigidbody:
   m_ObjectHideFlags: 0
