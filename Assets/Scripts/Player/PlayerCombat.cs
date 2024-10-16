@@ -49,6 +49,8 @@ public class PlayerCombat : MonoBehaviour
     [NonSerialized] public float manaPotionRefillCooldown = 2f;
     [NonSerialized] public float manaPotionRefillTimer = 0f;
 
+    public AudioSource gulpSound;
+
     private void Awake()
     {
         inputManager = new InputManager();
@@ -187,12 +189,16 @@ public class PlayerCombat : MonoBehaviour
             healthPotionsAmount--;
             healthPotionRefillTimer = 0;
             statsScript.RefillHealth(healthPotionPoints);
+
+            gulpSound.Play();
         }
         else if (potionType == "mana" && manaPotionsAmount > 0 && statsScript.CurrentMana < statsScript.MaxMana)
         {
             manaPotionsAmount--;
             manaPotionRefillTimer = 0;
             statsScript.RefillMana(manaPotionPoints);
+
+            gulpSound.Play();
         }
     }
 

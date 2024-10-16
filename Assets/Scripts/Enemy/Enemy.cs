@@ -20,6 +20,8 @@ public class Enemy : MonoBehaviour, IDamageable
     private float attackDelay;
     private bool hasAttacked = false;
 
+    public AudioSource slashSound;
+
     private void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -89,6 +91,8 @@ public class Enemy : MonoBehaviour, IDamageable
     private IEnumerator AssessAttack()
     {
         yield return new WaitForSeconds(attackAnimation.length / 2.5f);
+
+        slashSound.Play();
 
         if (playerInAttackRange)
         {

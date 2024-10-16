@@ -41,6 +41,8 @@ public class Ability : MonoBehaviour
         set { intendedTarget = value; }
     }
 
+    public AudioSource abilitySound;
+
     protected virtual void Awake()
     {
         Setup();
@@ -58,6 +60,10 @@ public class Ability : MonoBehaviour
 
     protected virtual void ActivateAbility()
     {
+        if (abilitySound != null)
+        {
+            abilitySound.Play();
+        }
     }
 
     protected virtual void Update()
