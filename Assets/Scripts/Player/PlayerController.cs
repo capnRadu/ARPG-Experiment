@@ -1,8 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -43,14 +43,6 @@ public class PlayerController : MonoBehaviour
         setDestination.Disable();
         setDestination.performed -= SetDestinationPerformed;
         setDestination.canceled -= SetDestinationCanceled;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GetComponent<Stats>().TakeDamage(10);
-        }
     }
 
     // Button is first pressed, but not yet released
@@ -232,5 +224,10 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position), 10f * Time.deltaTime);
             yield return null;
         }
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
