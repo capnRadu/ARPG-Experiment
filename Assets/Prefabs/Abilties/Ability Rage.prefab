@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4aea0c0ca5b1d4f909d4dc47756ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manaCost: 40
   animationClip: {fileID: -203655887218126122, guid: 94369903007218e4bb86e379d068bf1c,
     type: 3}
   abilityIcon: {fileID: 21300000, guid: c7e650b7a2cfc7a44a7d8456457bc399, type: 3}

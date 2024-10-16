@@ -7,6 +7,7 @@ public class Ability : MonoBehaviour
 {
     protected string abilityName;
     protected float baseDamage;
+    [SerializeField] protected float manaCost;
     protected float castDuration; // How long the ability lasts
     protected float buffDuration; // If the ability is a buff, how long the buff lasts
     protected bool hasDebuffed = false;
@@ -41,6 +42,25 @@ public class Ability : MonoBehaviour
     {
         get { return intendedTarget; }
         set { intendedTarget = value; }
+    }
+
+    protected virtual void Awake()
+    {
+        Setup();
+    }
+
+    protected virtual void Start()
+    {
+        ActivateAbility();
+    }
+
+    protected virtual void Setup()
+    {
+        cooldown = maxCooldown;
+    }
+
+    protected virtual void ActivateAbility()
+    {
     }
 
     protected virtual void Update()
@@ -90,5 +110,10 @@ public class Ability : MonoBehaviour
     protected virtual void Debuff()
     {
         hasDebuffed = true;
+    }
+
+    public float GetManaCost()
+    {
+        return manaCost;
     }
 }

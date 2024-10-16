@@ -6,16 +6,20 @@ public class AbilitySlash : Ability
 {
     private float impactDelay = 0.35f;
 
-    private void Awake()
+    protected override void Setup()
     {
         abilityName = "Slash";
         baseDamage = 10f;
         castDuration = animationClip.length;
         maxCooldown = castDuration;
-        cooldown = maxCooldown;
+
+        base.Setup();
     }
-    private void Start()
+
+    protected override void ActivateAbility()
     {
+        base.ActivateAbility();
+
         caster.GetComponent<Animator>().SetTrigger("attack");
     }
 

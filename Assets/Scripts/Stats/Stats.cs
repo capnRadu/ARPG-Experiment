@@ -137,4 +137,10 @@ public class Stats : MonoBehaviour
         currentMana += amount;
         currentMana = Mathf.Clamp(currentMana, 0, maxMana);
     }
+    
+    public void ConsumeMana(float amount)
+    {
+        currentMana -= amount;
+        currentMana = Mathf.Clamp(currentMana, 0, maxMana);
+    }
 }

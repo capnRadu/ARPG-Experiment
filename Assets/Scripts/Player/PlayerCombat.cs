@@ -154,16 +154,23 @@ public class PlayerCombat : MonoBehaviour
         {
             if (spawnedAbilities[abilitySlotIndex] == null && !isCasting)
             {
-                if (stopMovement)
+                float abiliyManaCost = abilities[abilitySlotIndex].GetManaCost();
+
+                if (statsScript.CurrentMana >= abiliyManaCost)
                 {
-                    playerControllerScript.StopRunningCoroutine(0, true);
+                    statsScript.ConsumeMana(abiliyManaCost);
+
+                    if (stopMovement)
+                    {
+                        playerControllerScript.StopRunningCoroutine(0, true);
+                    }
+
+                    isCasting = true;
+
+                    spawnedAbilities[abilitySlotIndex] = Instantiate(abilities[abilitySlotIndex], intendedTarget.transform.position, Quaternion.identity);
+                    spawnedAbilities[abilitySlotIndex].Caster = gameObject;
+                    spawnedAbilities[abilitySlotIndex].IntendedTarget = intendedTarget;
                 }
-
-                isCasting = true;
-
-                spawnedAbilities[abilitySlotIndex] = Instantiate(abilities[abilitySlotIndex], intendedTarget.transform.position, Quaternion.identity);
-                spawnedAbilities[abilitySlotIndex].Caster = gameObject;
-                spawnedAbilities[abilitySlotIndex].IntendedTarget = intendedTarget;
             }
         }
     }

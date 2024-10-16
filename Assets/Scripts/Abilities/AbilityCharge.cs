@@ -5,17 +5,20 @@ using UnityEngine.AI;
 
 public class AbilityCharge : Ability
 {
-    private void Awake()
+    protected override void Setup()
     {
         abilityName = "Charge";
         baseDamage = 20f;
         castDuration = 1f;
         maxCooldown = 8f;
-        cooldown = maxCooldown;
+
+        base.Setup();
     }
 
-    private void Start()
+    protected override void ActivateAbility()
     {
+        base.ActivateAbility();
+
         transform.SetParent(caster.transform);
         caster.GetComponent<Animator>().SetBool("isCharging", true);
         caster.GetComponent<NavMeshAgent>().enabled = false;

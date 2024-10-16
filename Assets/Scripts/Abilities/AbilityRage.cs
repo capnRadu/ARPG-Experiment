@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class AbilityRage : Ability
 {
-    private void Awake()
+    protected override void Setup()
     {
         abilityName = "Rage";
         castDuration = animationClip.length;
         buffDuration = 10f;
         maxCooldown = 20f;
-        cooldown = maxCooldown;
+
+        base.Setup();
     }
 
-    private void Start()
+    protected override void ActivateAbility()
     {
+        base.ActivateAbility();
+
         transform.SetParent(caster.transform);
         caster.GetComponent<Animator>().SetTrigger("rage");
         BuffPlayer();
@@ -31,7 +34,6 @@ public class AbilityRage : Ability
         caster.TryGetComponent<Stats>(out Stats casterStats);
         casterStats.Strength *= 2;
         casterStats.CurrentHealth = casterStats.MaxHealth;
-        casterStats.CurrentMana = casterStats.MaxMana;
     }
 
     private void DebuffPlayer()
